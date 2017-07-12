@@ -831,7 +831,11 @@ func (t *TemplateGenerator) getTemplateFuncMap(cs *api.ContainerService) map[str
 				case "cloudProviderBackoffRetries":
 					val = strconv.Itoa(cs.Properties.OrchestratorProfile.KubernetesConfig.CloudProviderBackoffRetries)
 				case "cloudProviderBackoffExponent":
+<<<<<<< HEAD
+					val = strconv.FormatFloat(cs.Properties.OrchestratorProfile.KubernetesConfig.CloudProviderBackoffExponent, 'f', -1, 64)
+=======
 					val = KubeImages[kubernetesVersion]["backoffexponent"]
+>>>>>>> ref(kube-addons): move k8s manifests/scripts/etc to parts/kubernetes
 				case "cloudProviderBackoffDuration":
 					val = strconv.Itoa(cs.Properties.OrchestratorProfile.KubernetesConfig.CloudProviderBackoffDuration)
 				case "cloudProviderBackoffJitter":

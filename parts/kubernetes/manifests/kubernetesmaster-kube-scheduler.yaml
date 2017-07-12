@@ -29,4 +29,3 @@ spec:
     - name: "var-lib-kubelet"
       hostPath:
         path: "/var/lib/kubelet"
-        
