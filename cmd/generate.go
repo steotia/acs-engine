@@ -4,11 +4,11 @@ import (
 	"os"
 	"path"
 
-	log "github.com/Sirupsen/logrus"
-	"github.com/spf13/cobra"
-
 	"github.com/Azure/acs-engine/pkg/acsengine"
 	"github.com/Azure/acs-engine/pkg/api"
+	"github.com/Azure/acs-engine/pkg/api/kubernetesagentpool"
+	log "github.com/Sirupsen/logrus"
+	"github.com/spf13/cobra"
 	"io/ioutil"
 )
 
@@ -82,6 +82,18 @@ func (gc *generateCmd) validate(cmd *cobra.Command, args []string) {
 	if err != nil {
 		log.Fatalf("error parsing the api model: %s", err.Error())
 	}
+
+	// ------------------------------------------------------------------------------------------
+	//
+	// TODO (@kris-nova) Here we need to actually validate the API model.
+	// TODO (@kris-nova) Let's code this after we know what the API is going to look like and
+	// TODO (@kris-nova) how it's supposed to behave
+	if gc.apiVersion == kubernetesagentpool.APIVersion {
+		log.Infof("Bypassing validation for API: [%s]", kubernetesagentpool.APIVersion)
+		return
+	}
+	//
+	// ------------------------------------------------------------------------------------------
 
 	if gc.outputDirectory == "" {
 		gc.outputDirectory = path.Join("_output", gc.containerService.Properties.MasterProfile.DNSPrefix)
